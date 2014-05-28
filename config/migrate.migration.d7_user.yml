@@ -1,0 +1,21 @@
+id: d7_user
+label: Drupal 7 user accounts
+source:
+  plugin: d7_user
+process:
+  uid: uid
+  uuid: uuid
+  name: name
+  pass: pass
+  mail: mail
+  created: created
+  access: access
+  login: login
+  status: status
+  timezone: timezone
+  preferred_langcode: language
+  init: init
+  signature: signature
+destination:
+  plugin: entity:user
+  md5_passwords: true
