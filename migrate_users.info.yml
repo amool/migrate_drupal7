@@ -1,0 +1,7 @@
+name: Migrate D7 Users
+description: The simplest example of implementing a migration.
+package: DrupalLadder
+type: module
+core: 8.x
+dependencies:
+  - migrate
