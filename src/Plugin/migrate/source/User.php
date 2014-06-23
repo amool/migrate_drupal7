@@ -15,7 +15,7 @@ use Drupal\migrate_users\Plugin\migrate\source\DrupalSqlBase;
  *
  * @ingroup migrate_users
  *
- * @PluginId("d7_user")
+ * @MigrateSource("d7_user")
  */
 class User extends DrupalSqlBase {
 
