@@ -7,17 +7,18 @@
 
 namespace Drupal\migrate_users\Plugin\migrate\source;
 
+use Drupal\migrate\Plugin\SourceEntityInterface;
 use Drupal\migrate\Row;
 use Drupal\migrate_users\Plugin\migrate\source\DrupalSqlBase;
 
 /**
  * Extract users from Drupal 7 database.
  *
- * @ingroup migrate_users
- *
- * @MigrateSource("d7_user")
+ * @MigrateSource(
+ *   id = "d7_user"
+ * )
  */
-class User extends DrupalSqlBase {
+class User extends DrupalSqlBase implements SourceEntityInterface {
 
   /**
    * {@inheritdoc}
@@ -57,6 +58,7 @@ class User extends DrupalSqlBase {
   protected function baseFields() {
     $fields = array(
       'uid' => $this->t('User ID'),
+      'uuid' => $this->t('Universally  Unique ID'),      
       'name' => $this->t('Username'),
       'pass' => $this->t('Password'),
       'mail' => $this->t('Email address'),
