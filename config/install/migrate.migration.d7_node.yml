@@ -1,0 +1,41 @@
+id: d7_node
+label: Drupal 7 nodes
+source:
+  plugin: d7_node
+destination:
+  plugin: entity:node
+process:
+  nid: nid
+  vid: vid
+  type: type
+  langcode: language
+  title: title
+  uid: uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uuid: uuid
+  body.value: body_value
+  body.format:
+    plugin: static_map
+    source: body_format
+    map:
+      filtered_html: restricted_html
+      full_html: full_html
+
+#  unmapped d7 fields.
+#  tnid
+#  translate
+#  moderate
+#  comment
+
+#migration_dependencies:
+#  required:
+#    - d6_node_type
+#    - d6_filter_format
+#  optional:
+#    - d6_field_instance_widget_settings
+#    - d6_field_formatter_settings
+#    - d6_node_settings
