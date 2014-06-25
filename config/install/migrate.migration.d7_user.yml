@@ -2,6 +2,9 @@ id: d7_user
 label: Drupal 7 user accounts
 source:
   plugin: d7_user
+destination:
+  plugin: entity:user
+  md5_passwords: true  
 process:
   uid: uid
   uuid: uuid
@@ -16,6 +19,3 @@ process:
   preferred_langcode: language
   init: init
   signature: signature
-destination:
-  plugin: entity:user
-  md5_passwords: true
