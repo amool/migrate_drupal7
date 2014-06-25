@@ -1,0 +1,7 @@
+name: Migrate from Drupal 7
+description: "Migrates from content (users, nodes  & fields) from drupalladder.org (Drupal 7) to Drupal 8" 
+package: DrupalLadder
+type: module
+core: 8.x
+dependencies:
+  - migrate
