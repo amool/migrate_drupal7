@@ -2,14 +2,14 @@
 
 /**
  * @file
- * Contains \Drupal\migrate_users\Plugin\migrate\source\User.
+ * Contains \Drupal\migrate_drupal7\Plugin\migrate\source\User.
  */
 
-namespace Drupal\migrate_users\Plugin\migrate\source;
+namespace Drupal\migrate_drupal7\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\SourceEntityInterface;
 use Drupal\migrate\Row;
-use Drupal\migrate_users\Plugin\migrate\source\DrupalSqlBase;
+use Drupal\migrate_drupal7\Plugin\migrate\source\DrupalSqlBase;
 
 /**
  * Extract users from Drupal 7 database.

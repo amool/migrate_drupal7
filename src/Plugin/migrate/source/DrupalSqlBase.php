@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\migrate_users\Plugin\migrate\source\DrupalSqlBase.
+ * Contains \Drupal\migrate_drupal7\Plugin\migrate\source\DrupalSqlBase.
  */
 
-namespace Drupal\migrate_users\Plugin\migrate\source;
+namespace Drupal\migrate_drupal7\Plugin\migrate\source;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\Entity\MigrationInterface;

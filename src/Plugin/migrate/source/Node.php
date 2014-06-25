@@ -2,14 +2,14 @@
 
 /**
  * @file
- * Contains \Drupal\migrate_users\Plugin\migrate\source\Node.
+ * Contains \Drupal\migrate_drupal7\Plugin\migrate\source\Node.
  */
 
-namespace Drupal\migrate_users\Plugin\migrate\source;
+namespace Drupal\migrate_drupal7\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\SourceEntityInterface;
 use Drupal\migrate\Row;
-use Drupal\migrate_users\Plugin\migrate\source\DrupalSqlBase;
+use Drupal\migrate_drupal7\Plugin\migrate\source\DrupalSqlBase;
 
 /**
  * Drupal 7 node source from database.
@@ -30,7 +30,6 @@ class Node extends DrupalSqlBase implements SourceEntityInterface {
    */
   public function query() {
     // Select node in its last revision.
-    print("in query()");
     $query = $this->select('node', 'n')
       ->fields('n', array(
         'nid',
