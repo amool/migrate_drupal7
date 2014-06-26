@@ -13,7 +13,10 @@ How?
 ===============
 To run/execute migration you need Drush 7.
 
-1. create a yaml manifest file (eg. manifest.yml) with list of migrations. Currently this module supports only two migrations: `d7_user` & `d7_node`
+1. create a yaml manifest file (eg. manifest.yml) with list of migrations. Currently this module supports only following migrations: 
+ - `d7_user` 
+ - `d7_page`
+ - `d7_lesson`
 
 2. run `drush migrate-manifest <path-to-manifest-file> --db-url=<mysql://root:pass@127.0.0.1/d7_db_name>`
 

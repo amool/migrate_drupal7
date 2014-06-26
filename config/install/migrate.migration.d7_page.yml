@@ -1,14 +1,18 @@
-id: d7_node
+id: d7_page
 label: Drupal 7 nodes
 source:
-  plugin: d7_node
+  plugin: d7_page
 destination:
   plugin: entity:node
 process:
   nid: nid
   vid: vid
   type: type
-  langcode: language
+  langcode:
+    plugin: static_map
+    source: language
+    map:
+      und: en
   title: title
   uid: uid
   status: status

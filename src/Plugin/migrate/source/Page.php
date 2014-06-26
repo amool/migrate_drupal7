@@ -15,10 +15,10 @@ use Drupal\migrate_drupal7\Plugin\migrate\source\DrupalSqlBase;
  * Drupal 7 node source from database.
  *
  * @MigrateSource(
- *   id = "d7_node"
+ *   id = "d7_page"
  * )
  */
-class Node extends DrupalSqlBase implements SourceEntityInterface {
+class Page extends DrupalSqlBase implements SourceEntityInterface {
 
   /**
    * The join options between the node and the node_revisions table.
@@ -31,6 +31,7 @@ class Node extends DrupalSqlBase implements SourceEntityInterface {
   public function query() {
     // Select node in its last revision.
     $query = $this->select('node', 'n')
+      ->condition('n.type', 'page', '=')
       ->fields('n', array(
         'nid',
         'vid',
@@ -50,7 +51,7 @@ class Node extends DrupalSqlBase implements SourceEntityInterface {
         'body_format',
         'body_value',
       ));
-    $query->innerJoin('field_data_body', 'fdb', static::JOIN);
+    $query->leftJoin('field_data_body', 'fdb', static::JOIN);
     return $query;
   }
 
