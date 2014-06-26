@@ -1,0 +1,37 @@
+id: d7_ladder
+source:
+  plugin: d7_ladder
+destination:
+  plugin: entity:node
+process:
+  nid: nid
+  vid: vid
+  type: type
+  langcode:
+    plugin: static_map
+    source: language
+    map:
+      und: en
+  title: title
+  uid: uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uuid: uuid
+
+#  unmapped d7 fields.
+#  tnid
+#  translate
+#  moderate
+#  comment
+
+#migration_dependencies:
+#  required:
+#    - d6_node_type
+#    - d6_filter_format
+#  optional:
+#    - d6_field_instance_widget_settings
+#    - d6_field_formatter_settings
+#    - d6_node_settings

@@ -17,6 +17,7 @@ To run/execute migration you need Drush 7.
  - `d7_user` 
  - `d7_page`
  - `d7_lesson`
+ - `d7_ladder`
 
 2. run `drush migrate-manifest <path-to-manifest-file> --db-url=<mysql://root:pass@127.0.0.1/d7_db_name>`
 
