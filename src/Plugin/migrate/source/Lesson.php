@@ -48,6 +48,98 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
    * {@inheritdoc}
    */
   public function fields() {
+    $fields = $this->baseFields();
+    //field_lesson_description
+    $fields['field_lesson_description_value'] = $this->t('Value of field_lesson_description');
+    $fields['field_lesson_description_format'] = $this->t('format of the value of field_lesson_description');
+    //field_lesson_draft_status
+    //field_lesson_drupal_version
+    //field_lesson_last_peer_review
+    //field_lesson_maintainers
+    //field_lesson_overview
+    //field_lesson_prerequisites
+    //field_lesson_project_name
+    $fields['field_lesson_project_name_value'] = $this->t('Value of field_lesson_project_name');
+    $fields['field_lesson_project_name_format'] = $this->t('format of the value of field_lesson_project_name');   
+    //field_lesson_project_type
+    //field_lesson_steps
+    //field_lesson_tags
+    //field_lesson_type
+    return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function prepareRow(Row $row) {
+    $nid = $row->getSourceProperty('nid');
+    $result = $this->getDatabase()->query('
+      SELECT
+        fld.field_lesson_description_value,
+        fld.field_lesson_description_format,
+        fld.`language`,
+        fld.revision_id
+      FROM
+        {field_data_field_lesson_description} fld
+      WHERE
+        fld.entity_id = :nid
+    ', array(':nid' => $nid));
+    //ASSUMPTION: assuming that there will be only one record/row as a result from above query.
+    foreach ($result as $record) {
+      $row->setSourceProperty('field_lesson_description_value', $record->field_lesson_description_value );
+      $row->setSourceProperty('field_lesson_description_format', $record->field_lesson_description_format );
+    }
+
+    $result = $this->getDatabase()->query('
+      SELECT
+        flp.field_lesson_project_name_value,
+        flp.field_lesson_project_name_format,        
+        flp.`language`,
+        flp.revision_id
+      FROM
+        {field_data_field_lesson_project_name} flp
+      WHERE
+        flp.entity_id = :nid
+    ', array(':nid' => $nid));
+    //ASSUMPTION: assuming that there will be only one record/row as a result from above query.
+    foreach ($result as $record) {
+      $row->setSourceProperty('field_lesson_project_name_value', $record->field_lesson_project_name_value );
+      $row->setSourceProperty('field_lesson_project_name_format', $record->field_lesson_project_name_format );      
+    }    
+    return parent::prepareRow($row);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getIds() {
+    $ids['nid']['type'] = 'integer';
+    $ids['nid']['alias'] = 'n';
+    return $ids;
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
+  public function bundleMigrationRequired() {
+    return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function entityTypeId() {
+    return 'node';
+  }
+
+  /**
+   * Returns the user base fields to be migrated.
+   *
+   * @return array
+   *   Associative array having field name as key and description as value.
+   */
+  protected function baseFields() {
     $fields = array(
       'nid' => $this->t('Node ID'),
       'vid' => $this->t('Version ID'),
@@ -63,32 +155,8 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
       'sticky' => $this->t('Sticky at top of lists'),
       'uuid' => $this->t('Universally Unique ID'),
       'language' => $this->t('Language (fr, en, ...)'),
-//      'tnid' => $this->t('The translation set id for this node'),
     );
     return $fields;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getIds() {
-    $ids['nid']['type'] = 'integer';
-    $ids['nid']['alias'] = 'n';
-    return $ids;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function bundleMigrationRequired() {
-    return FALSE;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function entityTypeId() {
-    return 'node';
   }
 
 }
