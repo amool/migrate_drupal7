@@ -29,7 +29,15 @@ process:
     source: field_lesson_description_format
     map:
       filtered_html: restricted_html
-      full_html: full_html  
+      full_html: full_html
+  field_lesson_prerequisites_old.value: field_lesson_prerequisites_value
+  field_lesson_prerequisites_old.format:
+    plugin: static_map
+    bypass: true
+    source: field_lesson_prerequisites_format
+    map:
+      filtered_html: restricted_html
+      full_html: full_html
   field_lesson_overview.value: field_lesson_overview_value
   field_lesson_overview.format:
     plugin: static_map

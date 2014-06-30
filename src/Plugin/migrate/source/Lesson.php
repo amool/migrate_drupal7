@@ -52,6 +52,9 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     //field_lesson_description
     $fields['field_lesson_description_value'] = $this->t('Value of field_lesson_description');
     $fields['field_lesson_description_format'] = $this->t('format of the value of field_lesson_description');
+    //field_lesson_prerequisites
+    $fields['field_lesson_prerequisites_value'] = $this->t('Value of field_lesson_prerequisites');
+    $fields['field_lesson_prerequisites_format'] = $this->t('format of the value of field_lesson_prerequisites');    
     //field_lesson_overview
     $fields['field_lesson_overview_value'] = $this->t('Value of field_lesson_overview');
     $fields['field_lesson_overview_format'] = $this->t('format of the value of field_lesson_overview');
@@ -63,7 +66,6 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     $fields['field_lesson_project_name_format'] = $this->t('format of the value of field_lesson_project_name');
     //field_lesson_draft_status
     $fields['field_lesson_draft_status_value'] = $this->t('Value of field_lesson_draft_status');
-    //field_lesson_prerequisites
     //field_lesson_type
     $fields['field_lesson_type_value'] = $this->t('Value of field_lesson_type');    
     //field_lesson_project_type
@@ -99,6 +101,23 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     foreach ($result as $record) {
       $row->setSourceProperty('field_lesson_description_value', $record->field_lesson_description_value );
       $row->setSourceProperty('field_lesson_description_format', $record->field_lesson_description_format );
+    }
+
+    
+    //field_lesson_prerequisites
+    $result = $this->getDatabase()->query('
+      SELECT
+        flo.field_lesson_prerequisites_value,
+        flo.field_lesson_prerequisites_format
+      FROM
+        {field_data_field_lesson_prerequisites} flo
+      WHERE
+        flo.entity_id = :nid
+    ', array(':nid' => $nid));
+    //ASSUMPTION: assuming that there will be only one record/row as a result from above query.
+    foreach ($result as $record) {
+      $row->setSourceProperty('field_lesson_prerequisites_value', $record->field_lesson_prerequisites_value );
+      $row->setSourceProperty('field_lesson_prerequisites_format', $record->field_lesson_prerequisites_format );
     }
 
      
