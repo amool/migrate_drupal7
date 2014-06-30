@@ -60,6 +60,8 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     $fields['field_lesson_last_peer_review_value'] = $this->t('Value of field_lesson_last_peer_review');    
     //field_lesson_maintainers
     //field_lesson_overview
+    $fields['field_lesson_overview_value'] = $this->t('Value of field_lesson_overview');
+    $fields['field_lesson_overview_format'] = $this->t('format of the value of field_lesson_overview');
     //field_lesson_prerequisites
     //field_lesson_project_name
     $fields['field_lesson_project_name_value'] = $this->t('Value of field_lesson_project_name');
@@ -93,7 +95,23 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
       $row->setSourceProperty('field_lesson_description_format', $record->field_lesson_description_format );
     }
 
-    
+     
+    //field_lesson_overview
+    $result = $this->getDatabase()->query('
+      SELECT
+        flo.field_lesson_overview_value,
+        flo.field_lesson_overview_format
+      FROM
+        {field_data_field_lesson_overview} flo
+      WHERE
+        flo.entity_id = :nid
+    ', array(':nid' => $nid));
+    //ASSUMPTION: assuming that there will be only one record/row as a result from above query.
+    foreach ($result as $record) {
+      $row->setSourceProperty('field_lesson_overview_value', $record->field_lesson_overview_value );
+      $row->setSourceProperty('field_lesson_overview_format', $record->field_lesson_overview_format );
+    }
+   
     //field_lesson_draft_status
     $result = $this->getDatabase()->query('
       SELECT
