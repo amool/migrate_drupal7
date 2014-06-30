@@ -52,28 +52,29 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     //field_lesson_description
     $fields['field_lesson_description_value'] = $this->t('Value of field_lesson_description');
     $fields['field_lesson_description_format'] = $this->t('format of the value of field_lesson_description');
-    //field_lesson_draft_status
-    $fields['field_lesson_draft_status_value'] = $this->t('Value of field_lesson_draft_status');
-    //field_lesson_drupal_version
-    $fields['field_lesson_drupal_version_value'] = $this->t('Value of field_lesson_drupal_version');
-    //field_lesson_last_peer_review
-    $fields['field_lesson_last_peer_review_value'] = $this->t('Value of field_lesson_last_peer_review');    
-    //field_lesson_maintainers
     //field_lesson_overview
     $fields['field_lesson_overview_value'] = $this->t('Value of field_lesson_overview');
     $fields['field_lesson_overview_format'] = $this->t('format of the value of field_lesson_overview');
-    //field_lesson_prerequisites
-    //field_lesson_project_name
-    $fields['field_lesson_project_name_value'] = $this->t('Value of field_lesson_project_name');
-    $fields['field_lesson_project_name_format'] = $this->t('format of the value of field_lesson_project_name');   
-    //field_lesson_project_type
-    $fields['field_lesson_project_type_value'] = $this->t('Value of field_lesson_project_type');
     //field_lesson_steps
     $fields['field_lesson_steps_value'] = $this->t('Value of field_lesson_steps');
     $fields['field_lesson_steps_format'] = $this->t('format of the value of field_lesson_steps');
-    //field_lesson_tags
+    //field_lesson_project_name
+    $fields['field_lesson_project_name_value'] = $this->t('Value of field_lesson_project_name');
+    $fields['field_lesson_project_name_format'] = $this->t('format of the value of field_lesson_project_name');
+    //field_lesson_draft_status
+    $fields['field_lesson_draft_status_value'] = $this->t('Value of field_lesson_draft_status');
+    //field_lesson_prerequisites
     //field_lesson_type
-    $fields['field_lesson_type_value'] = $this->t('Value of field_lesson_type');
+    $fields['field_lesson_type_value'] = $this->t('Value of field_lesson_type');    
+    //field_lesson_project_type
+    $fields['field_lesson_project_type_value'] = $this->t('Value of field_lesson_project_type');
+    //field_lesson_last_peer_review
+    $fields['field_lesson_last_peer_review_value'] = $this->t('Value of field_lesson_last_peer_review');
+    //field_lesson_drupal_version
+    $fields['field_lesson_drupal_version_value'] = $this->t('Value of field_lesson_drupal_version');    
+    //field_lesson_maintainers
+    //field_lesson_tags
+
 
     return $fields;
   }
