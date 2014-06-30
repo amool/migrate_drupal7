@@ -73,6 +73,7 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
    */
   public function prepareRow(Row $row) {
     $nid = $row->getSourceProperty('nid');
+    
     $result = $this->getDatabase()->query('
       SELECT
         fld.field_lesson_description_value,

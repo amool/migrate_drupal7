@@ -10,6 +10,7 @@ process:
   type: type
   langcode:
     plugin: static_map
+    bypass: true
     source: language
     map:
       und: en
@@ -21,58 +22,19 @@ process:
   promote: promote
   sticky: sticky
   uuid: uuid
-
-# field_lesson_description
   field_lesson_description.value: field_lesson_description_value
-  field_lesson_description.format: 
-      plugin: static_map
+  field_lesson_description.format:
+    plugin: static_map
+    bypass: true
     source: field_lesson_description_format
     map:
       filtered_html: restricted_html
       full_html: full_html
-# field_lesson_draft_status
-#  field_lesson_draft_status: field_lesson_draft_status_value
-# field_lesson_drupal_version
-#  field_lesson_drupal_version: field_lesson_drupal_version_value
-# field_lesson_last_peer_review
-#  field_lesson_last_peer_review: field_lesson_last_peer_review_value
-# field_lesson_maintainers
-#  field_lesson_maintainers: field_lesson_maintainers_value
-# field_lesson_overview
-#  field_lesson_overview: field_lesson_overview_value
-# field_lesson_prerequisites
-#  field_lesson_prerequisites: field_lesson_prerequisites_value
-# field_lesson_project_name
   field_lesson_project_name.value: field_lesson_project_name_value
-  field_lesson_project_name.format: 
-      plugin: static_map
+  field_lesson_project_name.format:
+    plugin: static_map
+    bypass: true
     source: field_lesson_project_name_format
     map:
       filtered_html: restricted_html
       full_html: full_html
-# field_lesson_draft_status  
-# field_lesson_project_type
-#  field_lesson_project_type: field_lesson_project_type_value
-# field_lesson_steps
-#  field_lesson_steps: field_lesson_steps_value
-# field_lesson_tags
-#  field_lesson_tags: field_lesson_tags_value
-# field_lesson_type
-#  field_lesson_type: field_lesson_type_value
-
-
-#  unmapped d7 fields.
-#  tnid
-#  translate
-#  moderate
-#  comment
-
-#migration_dependencies:
-#  required:
-#    - d6_node_type
-#    - d6_filter_format
-#  optional:
-#    - d6_field_instance_widget_settings
-#    - d6_field_formatter_settings
-#    - d6_node_settings
-
