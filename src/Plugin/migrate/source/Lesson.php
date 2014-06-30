@@ -120,6 +120,10 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     $multiplevalues = array();
     foreach ($result as $record) {
     	$multiplevalues[] = $record->field_lesson_drupal_version_value;
+    	//As per line 152,153 of \Drupal\migrate_drupal\Plugin\migrate\source\d6\CckFieldValues
+   		//$sourceProperty = 'field_lesson_drupal_version.'.$record->delta.'.value';
+    	//$row->setSourceProperty($sourceProperty, $record->field_lesson_drupal_version_value );
+
     }
     $row->setSourceProperty('field_lesson_drupal_version_value', $multiplevalues );
 
