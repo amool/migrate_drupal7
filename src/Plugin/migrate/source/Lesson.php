@@ -53,6 +53,7 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     $fields['field_lesson_description_value'] = $this->t('Value of field_lesson_description');
     $fields['field_lesson_description_format'] = $this->t('format of the value of field_lesson_description');
     //field_lesson_draft_status
+    $fields['field_lesson_draft_status_value'] = $this->t('Value of field_lesson_draft_status');    
     //field_lesson_drupal_version
     //field_lesson_last_peer_review
     //field_lesson_maintainers
@@ -74,12 +75,11 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
   public function prepareRow(Row $row) {
     $nid = $row->getSourceProperty('nid');
     
+    //field_lesson_description
     $result = $this->getDatabase()->query('
       SELECT
         fld.field_lesson_description_value,
-        fld.field_lesson_description_format,
-        fld.`language`,
-        fld.revision_id
+        fld.field_lesson_description_format
       FROM
         {field_data_field_lesson_description} fld
       WHERE
@@ -91,12 +91,26 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
       $row->setSourceProperty('field_lesson_description_format', $record->field_lesson_description_format );
     }
 
+    
+    //field_lesson_draft_status
+    $result = $this->getDatabase()->query('
+      SELECT
+        flds.field_lesson_draft_status_value
+      FROM
+        {field_data_field_lesson_draft_status} flds
+      WHERE
+        flds.entity_id = :nid
+    ', array(':nid' => $nid));
+    //ASSUMPTION: assuming that there will be only one record/row as a result from above query.
+    foreach ($result as $record) {
+      $row->setSourceProperty('field_lesson_draft_status_value', $record->field_lesson_draft_status_value );
+    }
+
+    //field_lesson_project
     $result = $this->getDatabase()->query('
       SELECT
         flp.field_lesson_project_name_value,
-        flp.field_lesson_project_name_format,        
-        flp.`language`,
-        flp.revision_id
+        flp.field_lesson_project_name_format
       FROM
         {field_data_field_lesson_project_name} flp
       WHERE
