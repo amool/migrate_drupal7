@@ -20,18 +20,11 @@ process:
   promote: promote
   sticky: sticky
   uuid: uuid
-
-#  unmapped d7 fields.
-#  tnid
-#  translate
-#  moderate
-#  comment
-
-#migration_dependencies:
-#  required:
-#    - d6_node_type
-#    - d6_filter_format
-#  optional:
-#    - d6_field_instance_widget_settings
-#    - d6_field_formatter_settings
-#    - d6_node_settings
+  field_lesson_overview.value: field_lesson_overview_value
+  field_lesson_overview.format:
+    plugin: static_map
+    bypass: true
+    source: field_lesson_overview_format
+    map:
+      filtered_html: restricted_html
+      full_html: full_html
