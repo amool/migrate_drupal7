@@ -116,10 +116,12 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
       WHERE
         fldv.entity_id = :nid
     ', array(':nid' => $nid));
-    //ASSUMPTION: assuming that there will be only one record/row as a result from above query.
+    //This field is a multi-value field => above query will result in multiple rows.
+    $multiplevalues = array();
     foreach ($result as $record) {
-      $row->setSourceProperty('field_lesson_drupal_version_value', $record->field_lesson_drupal_version_value );
+    	$multiplevalues[] = $record->field_lesson_drupal_version_value;
     }
+    $row->setSourceProperty('field_lesson_drupal_version_value', $multiplevalues );
 
     //field_lesson_project
     $result = $this->getDatabase()->query('
