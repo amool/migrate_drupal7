@@ -57,6 +57,7 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     //field_lesson_drupal_version
     $fields['field_lesson_drupal_version_value'] = $this->t('Value of field_lesson_drupal_version');
     //field_lesson_last_peer_review
+    $fields['field_lesson_last_peer_review_value'] = $this->t('Value of field_lesson_last_peer_review');    
     //field_lesson_maintainers
     //field_lesson_overview
     //field_lesson_prerequisites
@@ -123,9 +124,22 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     	//As per line 152,153 of \Drupal\migrate_drupal\Plugin\migrate\source\d6\CckFieldValues
    		//$sourceProperty = 'field_lesson_drupal_version.'.$record->delta.'.value';
     	//$row->setSourceProperty($sourceProperty, $record->field_lesson_drupal_version_value );
-
     }
     $row->setSourceProperty('field_lesson_drupal_version_value', $multiplevalues );
+    
+    //field_lesson_last_peer_review
+    $result = $this->getDatabase()->query('
+      SELECT
+        lpr.field_lesson_last_peer_review_value
+      FROM
+        {field_data_field_lesson_last_peer_review} lpr
+      WHERE
+        lpr.entity_id = :nid
+    ', array(':nid' => $nid));
+    //ASSUMPTION: assuming that there will be only one record/row as a result from above query.
+    foreach ($result as $record) {
+      $row->setSourceProperty('field_lesson_last_peer_review_value', $record->field_lesson_last_peer_review_value );
+    }
 
     //field_lesson_project
     $result = $this->getDatabase()->query('
