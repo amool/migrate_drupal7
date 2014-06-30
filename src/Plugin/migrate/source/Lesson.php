@@ -73,6 +73,8 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     $fields['field_lesson_steps_format'] = $this->t('format of the value of field_lesson_steps');
     //field_lesson_tags
     //field_lesson_type
+    $fields['field_lesson_type_value'] = $this->t('Value of field_lesson_type');
+
     return $fields;
   }
 
@@ -160,6 +162,20 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
       $row->setSourceProperty('field_lesson_project_type_value', $record->field_lesson_project_type_value );
     }
     
+    //field_lesson_type
+    $result = $this->getDatabase()->query('
+      SELECT
+        flt.field_lesson_type_value
+      FROM
+        {field_data_field_lesson_type} flt
+      WHERE
+        flt.entity_id = :nid
+    ', array(':nid' => $nid));
+    //ASSUMPTION: assuming that there will be only one record/row as a result from above query.
+    foreach ($result as $record) {
+      $row->setSourceProperty('field_lesson_type_value', $record->field_lesson_type_value );
+    }
+
     //field_lesson_drupal_version
     $result = $this->getDatabase()->query('
       SELECT
