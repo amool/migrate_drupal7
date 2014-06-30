@@ -1,0 +1,18 @@
+id: d7_taxonomy_term
+label: Drupal 7 taxonomy terms
+source:
+  plugin: d7_taxonomy_term
+destination:
+  plugin: entity:taxonomy_term  
+process:
+  tid: tid
+  vid:
+    plugin: static_map
+    source: vid
+    map:
+      1: lesson_tags
+  name: name
+  description: description
+  weight: weight
+  parent: parent
+  changed: timestamp
