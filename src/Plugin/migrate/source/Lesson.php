@@ -68,6 +68,8 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     $fields['field_lesson_project_name_format'] = $this->t('format of the value of field_lesson_project_name');   
     //field_lesson_project_type
     //field_lesson_steps
+    $fields['field_lesson_steps_value'] = $this->t('Value of field_lesson_steps');
+    $fields['field_lesson_steps_format'] = $this->t('format of the value of field_lesson_steps');
     //field_lesson_tags
     //field_lesson_type
     return $fields;
@@ -110,6 +112,22 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
     foreach ($result as $record) {
       $row->setSourceProperty('field_lesson_overview_value', $record->field_lesson_overview_value );
       $row->setSourceProperty('field_lesson_overview_format', $record->field_lesson_overview_format );
+    }
+    
+    //field_lesson_steps
+    $result = $this->getDatabase()->query('
+      SELECT
+        fls.field_lesson_steps_value,
+        fls.field_lesson_steps_format
+      FROM
+        {field_data_field_lesson_steps} fls
+      WHERE
+        fls.entity_id = :nid
+    ', array(':nid' => $nid));
+    //ASSUMPTION: assuming that there will be only one record/row as a result from above query.
+    foreach ($result as $record) {
+      $row->setSourceProperty('field_lesson_steps_value', $record->field_lesson_steps_value );
+      $row->setSourceProperty('field_lesson_steps_format', $record->field_lesson_steps_format );
     }
    
     //field_lesson_draft_status
