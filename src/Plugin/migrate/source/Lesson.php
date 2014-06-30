@@ -136,14 +136,18 @@ class Lesson extends DrupalSqlBase implements SourceEntityInterface {
         fldv.entity_id = :nid
     ', array(':nid' => $nid));
     //This field is a multi-value field => above query will result in multiple rows.
-    $multiplevalues = array();
+   /* Method 2: $multiplevalues = array();
     foreach ($result as $record) {
     	$multiplevalues[] = $record->field_lesson_drupal_version_value;
+	*/
+    foreach ($result as $record) {
+      $row->setSourceProperty('field_lesson_drupal_version_value', $record->field_lesson_drupal_version_value );
+      	//Method 3:
     	//As per line 152,153 of \Drupal\migrate_drupal\Plugin\migrate\source\d6\CckFieldValues
    		//$sourceProperty = 'field_lesson_drupal_version.'.$record->delta.'.value';
     	//$row->setSourceProperty($sourceProperty, $record->field_lesson_drupal_version_value );
     }
-    $row->setSourceProperty('field_lesson_drupal_version_value', $multiplevalues );
+    // Method 2: $row->setSourceProperty('field_lesson_drupal_version_value', $multiplevalues );
     
     //field_lesson_last_peer_review
     $result = $this->getDatabase()->query('
