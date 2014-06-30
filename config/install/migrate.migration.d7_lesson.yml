@@ -47,6 +47,7 @@ process:
       filtered_html: restricted_html
       full_html: full_html
   field_lesson_draft_status.value: field_lesson_draft_status_value
+  field_lesson_project_type.value: field_lesson_project_type_value
   field_lesson_drupal_version.value: field_lesson_drupal_version_value
   field_lesson_last_peer_review.value: field_lesson_last_peer_review_value
   field_lesson_project_name.value: field_lesson_project_name_value
